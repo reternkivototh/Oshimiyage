@@ -21,7 +21,12 @@
 - 良かったと感じたお土産の情報を共有したいとき。
 ​
 ## 設計書
-後ほど作成予定
+- ER図</br>
+  https://drive.google.com/file/d/1lsDLTcPw1Jkps3S7hYf-XpNwS7C9ISZi/view?usp=sharing
+- テーブル定義書</br>
+  https://docs.google.com/spreadsheets/d/1Szy8xgMwaGxQKR45etU5boYz7yhEhtASfzGyfHlg0_M/edit?usp=sharing
+- アプリケーション詳細設計書</br>
+  https://docs.google.com/spreadsheets/d/14CoHHH5DCOQInipsanaUMqdL5ov7_76czF3mxPOKjJI/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
