@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+    <% end %>
     <%= yield %>
   </body>
 </html>

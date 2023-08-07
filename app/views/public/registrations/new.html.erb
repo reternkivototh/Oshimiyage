@@ -1,0 +1,52 @@
+<h2>新規会員登録</h2>
+
+<%= form_with model: @user, url: user_registration_path do |f| %>
+
+  <div class="field">
+    <%= "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= "パスワード" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= "パスワード（確認用）" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= "お住まいの都道府県" %>
+    <%= f.select :prefecture, User.prefectures.keys, {} %>
+  </div>
+
+  <div class="field">
+    <%= "性別" %><br />
+    <%= f.radio_button :gender, User.genders.key(0) %>
+    <%= f.label :gender_male, User.genders_i18n[:male] %>
+
+    <%= f.radio_button :gender, User.genders.key(1) %>
+    <%= f.label :gender_female, User.genders_i18n[:female] %>
+
+    <%= f.radio_button :gender, User.genders.key(2) %>
+    <%= f.label :gender_others, User.genders_i18n[:others] %>
+  </div>
+
+  <div class="field">
+    <%= "生年月" %><br />
+    <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
+    <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+
+  <%= link_to 'ログイン', new_user_session_path %>
+<% end %>
+
