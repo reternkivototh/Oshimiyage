@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     devise_scope :user do
       post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
     end
-    resources :users, only: [:show, :edit]
+    resources :users, only: [:show, :edit, :update]
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
   end
 
 

@@ -19,12 +19,18 @@ class User < ApplicationRecord
     沖縄県:47
   }
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
-      
+
     end
   end
+
+
 
 end
