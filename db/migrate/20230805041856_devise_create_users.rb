@@ -37,6 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :birth_year
       t.integer :birth_month
       t.boolean :is_deleted, default: false
+      t.integer :prefecture
 
       def change
         create_table :Users do |t|

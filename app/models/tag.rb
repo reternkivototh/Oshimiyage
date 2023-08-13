@@ -1,6 +1,5 @@
 class Tag < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+
+  has_many :posting_tags
+  has_many :post_images, through: :posting_tags
 end

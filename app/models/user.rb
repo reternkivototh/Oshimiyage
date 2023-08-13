@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :post_images, dependent: :destroy
+
   enum gender: {male: 0, female: 1, others: 2}
 
   enum prefecture: {

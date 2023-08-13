@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_06_090607) do
+ActiveRecord::Schema.define(version: 2023_08_13_053255) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,76 +25,42 @@ ActiveRecord::Schema.define(version: 2023_08_06_090607) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer "user_id"
     t.integer "post_image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_bookmarks_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_bookmarks_on_reset_password_token", unique: true
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer "user_id"
     t.integer "post_image_id"
-    t.text "comment"
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_post_comments_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_post_comments_on_reset_password_token", unique: true
   end
 
   create_table "post_images", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer "user_id"
     t.string "name"
     t.text "comment"
+    t.integer "prefecture"
     t.integer "way_of_getting"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_post_images_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_post_images_on_reset_password_token", unique: true
   end
 
   create_table "posting_tags", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer "tag_id"
     t.integer "post_image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_posting_tags_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_posting_tags_on_reset_password_token", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_tags_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_tags_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,6 +74,7 @@ ActiveRecord::Schema.define(version: 2023_08_06_090607) do
     t.integer "birth_year"
     t.integer "birth_month"
     t.boolean "is_deleted", default: false
+    t.integer "prefecture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

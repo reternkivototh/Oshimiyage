@@ -21,6 +21,11 @@
   </div>
 
   <div class="field">
+    <%= "会員名" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= "お住まいの都道府県" %>
     <%= f.select :prefecture, User.prefectures.keys, {} %>
   </div>

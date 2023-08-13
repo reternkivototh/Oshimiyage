@@ -14,10 +14,12 @@
     <% if user_signed_in? %>
       <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "新規投稿", new_public_post_image_path %>
       </li>
     <% elsif admin_signed_in? %>
       <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <%= link_to "タグ一覧", admin_tags_path %>
       </li>
     <% else %>
       <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">

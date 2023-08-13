@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
   namespace :public do
     get 'homes/about'
-    resources :post_images, only: [:index, :new, :edit]
+    resources :post_images, only: [:index, :new, :edit, :create, :destroy, :show]
     devise_scope :user do
       post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
     end
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   namespace :admin do
-    resources :tags, only: [:index, :edit]
+    resources :tags, only: [:index, :edit, :create, :destroy, :update]
     resources :users, only: [:index, :show, :edit]
     resources :post_images, only: [:index, :edit]
   end

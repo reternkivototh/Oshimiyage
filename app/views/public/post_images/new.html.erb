@@ -1,2 +1,20 @@
-<h1>Public::PostImages#new</h1>
-<p>Find me in app/views/public/post_images/new.html.erb</p>
+<h3>投稿</h3>
+
+<%= form_with model: @post_image, url: public_post_images_path do |f| %>
+  <div class="field">
+    <p>おみやげ画像<%= f.file_field :image %></p>
+    <p>おみやげ名<%= f.text_field :name %></p>
+    <p>コメント<%= f.text_area :comment %></p>
+    <p>旅先<%= f.select :prefecture, User.prefectures.keys, {} %></p>
+    <p>
+      <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
+      <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
+
+      <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(1) %>
+      <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
+    </p>
+    <p>値段<%= f.text_field :price %>円</p>
+
+    <%= f.submit '新規投稿' %>
+  </div>
+<% end %>
