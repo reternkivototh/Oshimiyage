@@ -6,6 +6,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.id = current_user.id
+    @user.update(user_params)
+    redirect_to public_user_path
+  end
+
   def withdrawal
     @user = User.find(params[:id])
     @user.update(is_deleted: true)

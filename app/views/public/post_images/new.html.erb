@@ -5,7 +5,7 @@
     <p>おみやげ画像<%= f.file_field :image %></p>
     <p>おみやげ名<%= f.text_field :name %></p>
     <p>コメント<%= f.text_area :comment %></p>
-    <p>旅先<%= f.select :prefecture, User.prefectures.keys, {} %></p>
+    <p>旅先<%= f.select :prefecture, PostImage.prefectures.keys, {} %></p>
     <p>
       <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
       <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
@@ -14,6 +14,13 @@
       <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
     </p>
     <p>値段<%= f.text_field :price %>円</p>
+    <p>タグ<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <%= tag.label do %>
+          <%= tag.check_box %>
+          <%= tag.text %>
+        <% end %>
+      <% end %>
+    </p>
 
     <%= f.submit '新規投稿' %>
   </div>
