@@ -1,11 +1,11 @@
 <h3>投稿詳細</h3>
 
-<%= form_with model: @post_image, url: public_post_image_path do |f| %>
-  <p>
-    <%= link_to public_user_path(@user.id) do %>
-      <%= @post_image.user.name %>
-    <% end %>
-  </p>
+<%= form_with model: @post_image, url: admin_post_image_path do |f| %>
+    <p>
+        <%= link_to public_user_path do %>
+          <%= @post_image.user.name %>
+        <% end %>
+    </p>
     <p><%= @post_image.name %></p>
     <p><%= image_tag @post_image.get_image(400, 300) %></p>
     <p><%= @post_image.prefecture %></p>
@@ -17,7 +17,8 @@
     <%end%>
     <p><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 
-    <% if @post_image.user == current_user %>
-      <%= link_to "投稿を削除", public_post_image_path, method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+
+    <% if admin_signed_in? %>
+      <%= link_to "管理者削除", admin_post_image_path(@post_image.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
 <% end %>
