@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   enum gender: {male: 0, female: 1, others: 2}
 

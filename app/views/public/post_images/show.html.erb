@@ -1,23 +1,57 @@
 <h3>投稿詳細</h3>
 
-<%= form_with model: @post_image, url: public_post_image_path do |f| %>
-  <p>
-    <%= link_to public_user_path(@user.id) do %>
-      <%= @post_image.user.name %>
-    <% end %>
-  </p>
-    <p><%= @post_image.name %></p>
-    <p><%= image_tag @post_image.get_image(400, 300) %></p>
-    <p><%= @post_image.prefecture %></p>
-    <p><%= @post_image.comment %></p>
-    <p><%= @post_image.way_of_getting_i18n %></p>
-    <p><%= @post_image.price %></p>
-    <% @post_image.tags.each do |tag| %>
-     　<%= tag.name %>
-    <%end%>
-    <p><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <div>
+    <%= form_with model: @post_image, url: public_post_image_path do |f| %>
+      <p>
+        <%= link_to public_user_path(@user.id) do %>
+          <%= @post_image.user.name %>
+        <% end %>
+      </p>
+        <p><%= @post_image.name %></p>
+        <p><%= image_tag @post_image.get_image(400, 300) %></p>
+        <p><%= @post_image.prefecture %></p>
+        <p><%= @post_image.comment %></p>
+        <p><%= @post_image.way_of_getting_i18n %></p>
+        <p><%= @post_image.price %></p>
+        <% @post_image.tags.each do |tag| %>
+         　<%= tag.name %>
+        <%end%>
+        <p><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 
-    <% if @post_image.user == current_user %>
-      <%= link_to "投稿を削除", public_post_image_path, method: :delete,  "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
+        <% if @post_image.user == current_user %>
+          <%= link_to "投稿を削除", public_post_image_path, method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+        <% if @post_image.bookmarked_by?(current_user) %>
+          <p>
+            <%= link_to public_post_image_bookmarks_path(@post_image), method: :delete do %>
+              ●<%= @post_image.bookmarks.count %>件のブックマーク
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to public_post_image_bookmarks_path(@post_image), method: :post do %>
+              ○<%= @post_image.bookmarks.count %>件のブックマーク
+            <% end %>
+          </p>
+        <% end %>
+  </div>
+
+
+
+    <div>
+      <p>コメント(<%= @post_image.post_comments.count %>件)</p>
+      <%= @post_image.post_comments.each do |post_comment| %>
+        <p><%=image_tag post_comment.user.get_profile_image(100, 100) %></p>
+        <%= post_comment.user.name %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form_with model: [@post_image, @post_comment], url: public_post_image_post_comments_path(@post_image.id) do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメント" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+
 <% end %>

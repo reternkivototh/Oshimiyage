@@ -17,7 +17,8 @@ class PostImage < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
-  has_many :post_comments, dependent: :destory
+  has_many :post_comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :posting_tags
   has_many :tags, through: :posting_tags
 
@@ -27,6 +28,10 @@ class PostImage < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 
 end
