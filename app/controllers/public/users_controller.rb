@@ -1,6 +1,10 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @post_image = @user.post_images
+
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_image_id)
+    @bookmark_list = PostImage.find(bookmarks)
   end
 
   def edit

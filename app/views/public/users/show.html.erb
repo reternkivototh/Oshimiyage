@@ -1,5 +1,17 @@
 <h2>マイページ</h2>
 
+<div>
+  <% if @bookmark_list.present? %>
+    <%= @bookmark_list.each do |post_image| %>
+      <p><%= image_tag post_image.get_image(400, 300) %></p>
+      <p><%= @user.name %></p>
+      <p><%= post_image.name %></p>
+      <p><%= post_image.prefecture %></p>
+      <p><%= @bookmark_list.count %></p>
+    <% end %>
+  <% end %>
+</div>
+
 <% if @user == current_user %>
 <%= link_to "退会する", public_unsubscribe_path %>
 <% end %>
