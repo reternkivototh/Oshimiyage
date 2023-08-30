@@ -1,2 +1,10 @@
 <h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<%= form_with model: @user, url: admin_users_path do |f| %>
+  <% @user.each do |user| %>
+    <%= user.id %>
+    <%= user.name %>
+    <%= user.email %>
+    <%= user.is_deleted? ? '無効' : '有効'%>
+    <%= link_to "詳細", admin_user_path(user.id) %>
+  <% end %>
+<% end %>
