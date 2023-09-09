@@ -34,4 +34,11 @@ class PostImage < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["comment", "created_at", "id", "name", "prefecture", "price", "updated_at", "user_id", "way_of_getting"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["bookmarks", "image_attachment", "image_blob", "post_comments", "posting_tags", "tags", "user"] #アソシエーション先を記述
+  end
 end

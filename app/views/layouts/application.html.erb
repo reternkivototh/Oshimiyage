@@ -16,18 +16,23 @@
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <%= link_to "新規投稿", new_public_post_image_path %>
         <%= link_to "投稿一覧", public_post_images_path %>
+        <%= link_to "地域から検索", public_search_place_path %>
+        <%= link_to "タグから検索", public_search_tag_path %>
       </li>
     <% elsif admin_signed_in? %>
       <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
         <%= link_to "タグ一覧", admin_tags_path %>
         <%= link_to "投稿一覧", admin_post_images_path %>
+        <%= link_to "会員一覧", admin_users_path %>
       </li>
     <% else %>
       <li class="nav-link btn btn-sm btn-outline-secondary rounded ml-5">
         <%= link_to "ログイン", new_user_session_path %>
+
       </li>
     <% end %>
+    <%= render 'public/shared/search', q: @q %>
     <%= yield %>
   </body>
 </html>

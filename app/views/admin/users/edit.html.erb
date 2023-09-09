@@ -1,2 +1,30 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h3>プロフィール編集</h3>
+
+<%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+  <%= f.text_field :name %>
+
+  <%= f.select :prefecture, User.prefectures.keys, {} %>
+
+
+  <%= f.radio_button :gender, User.genders.key(0) %>
+    <%= f.label :gender_male, User.genders_i18n[:male] %>
+
+    <%= f.radio_button :gender, User.genders.key(1) %>
+    <%= f.label :gender_female, User.genders_i18n[:female] %>
+
+    <%= f.radio_button :gender, User.genders.key(2) %>
+    <%= f.label :gender_others, User.genders_i18n[:others] %>
+
+
+  <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
+
+  <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
+
+  <%= f.label "会員ステータス" %>
+  <label><%= f.radio_button :is_deleted, false %>有効</label>
+  <label><%= f.radio_button :is_deleted, true %>無効</label>
+
+    <%= f.submit "変更を保存" %>
+<% end %>
