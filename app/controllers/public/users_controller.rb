@@ -14,8 +14,11 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.id = current_user.id
-    @user.update(user_params)
-    redirect_to public_user_path
+    if @user.update(user_params)
+      redirect_to public_user_path
+    else
+      render :edit
+    end
   end
 
   def withdrawal

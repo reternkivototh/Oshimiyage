@@ -1,2 +1,58 @@
-<h1>Public::Homes#top</h1>
 
+<div class="container">
+  <div class="row">
+      <div class="img-fluid">
+        <% @random.each do |post_image| %>
+          <%= image_tag post_image.get_image(100, 100) %>
+        <% end %>
+      </div>
+  </div>
+  <div class="row">
+    <div class="sidebar col-md-4">
+      <div class="sidebar-content">地域から探す</div>
+        <%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_eq: '1' }}), class: 'small' do %>
+          <div>北海道</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_eq: '2' }}), class: 'small' do %>
+          <div>青森県</div>
+        <% end %>
+    </div>
+    <div class="main col-md-8">
+      <div class="row">
+        <div class="main-title col-md-4 h5"><strong>新着おみやげ</strong></div>
+        <div class="top-link col-md-4 text-left"><%= link_to "すべて見る>", public_post_images_path %></div>
+      </div>
+        <div class="main-content">
+          <%= render 'public/shared/posts', post_images: @post_images %>
+        </div>
+      <div class="main-title h5 mt-3"><strong>人気おみやげ</strong></div>
+        <div class="main-content mb-5">
+          <div class="card-list-container py-3 d-flex flex-wrap">
+            <% @all_ranks.each do |all_ranks| %>
+            <div class="card w-25 mx-3">
+              <%= link_to public_post_image_path(@post_images.ids) do %>
+                <%= image_tag all_ranks.get_image(200, 120) %>
+              <% end %>
+              <div class="card-body">
+                <div class="row">
+                  <%= link_to public_post_image_path(@post_images.ids) do %>
+                    <p class="card-title h6 ml-3"><%= all_ranks.name %></p>
+                  <% end %>
+                </div>
+                <div class="row">
+                  <p class="card-writer small ml-3"><%= all_ranks.prefecture %></p>
+                </div>
+                <div class="row">
+                  <p class="card-tag text-secondary ml-3">
+                    <% all_ranks.tags.each do |tag| %>
+                      <%= tag.name %>
+                    <% end %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -61,3 +61,9 @@ gem 'devise'
 gem 'enum_help'
 
 gem 'ransack'
+
+gem 'devise-i18n'
+
+gem 'kaminari','~> 1.2.1'
+
+gem 'ancestry'

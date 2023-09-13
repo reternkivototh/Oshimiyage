@@ -1,6 +1,8 @@
 <h3>プロフィール編集</h3>
 
 <%= form_with model: @user, url: public_user_path(@user.id), method: :patch do |f| %>
+  <%= f.file_field :image, accept: "image/*" %>
+
   <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
   <%= f.text_field :name %>

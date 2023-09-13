@@ -1,5 +1,9 @@
 <h3>タグから検索</h3>
 
-<%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_or_tags_name_cont_any_eq: 'aabbcc' }}) do %>
-<div>aabbcc</div>
+<%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_or_tags_name_cont_any_eq: '家族' }}) do %>
+<div>家族</div>
+<% end %>
+
+<%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_or_tags_name_cont_any_eq: '自分' }}) do %>
+<div>自分</div>
 <% end %>

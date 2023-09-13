@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2023_08_14_141807) do
   create_table "post_images", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", null: false
-    t.text "comment"
+    t.text "my_comment"
     t.integer "prefecture", null: false
     t.integer "way_of_getting", null: false
     t.integer "price"

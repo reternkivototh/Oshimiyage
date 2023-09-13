@@ -4,9 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+
+  validates :name, presence: true
+  validates :birth_year, presence: true
+  validates :birth_month, presence: true
 
   enum gender: {male: 0, female: 1, others: 2}
 
@@ -28,12 +33,25 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: 'guest@example.com', name: 'guest') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
-
+      user.birth_year = 1990
+      user.birth_month = 12
+      user.id = 99
     end
   end
+
+  has_one_attached :profile_image
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
 
 
 

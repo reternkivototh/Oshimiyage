@@ -22,6 +22,11 @@ class PostImage < ApplicationRecord
   has_many :posting_tags
   has_many :tags, through: :posting_tags
 
+  validates :name, presence: true
+  validates :my_comment, presence: true
+  validates :way_of_getting, presence: true
+
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

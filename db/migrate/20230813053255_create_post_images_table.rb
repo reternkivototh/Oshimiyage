@@ -4,7 +4,7 @@ class CreatePostImagesTable < ActiveRecord::Migration[6.1]
 
       t.integer :user_id
       t.string :name, null: false
-      t.text :comment
+      t.text :my_comment
       t.integer :prefecture, null: false
       t.integer :way_of_getting, null: false
       t.integer :price

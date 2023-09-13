@@ -1,17 +1,61 @@
-<h2>マイページ</h2>
+<div class="container">
+  <div class="row">
+    <div class="profile col-md-3 offset-1 mt-4">
+      <div class="profile-image "><%= image_tag @user.get_profile_image(200, 200) %></div>
+      <table class="table table-borderless">
+        <tr><td>会員名</td><td><%= @user.name %></td></tr>
+        <tr><td>お住まいの地域</td><td><%= @user.prefecture %></td></tr>
+        <tr><td>性別</td><td><%= @user.gender_i18n %></td></tr>
+        <tr><td>生年月</td><td><%= @user.birth_year %>年<%= @user.birth_month %>月</td></tr>
+      </table>
+      <div class="edit-profile">
+        <% if @user == current_user %>
+          <div class="m-2"><%= link_to "プロフィール編集", edit_public_user_path(@user), class: "btn btn-outline-secondary btn-block rounded" %></div>
+          <div class="m-2"><%= link_to "退会する", public_unsubscribe_path, class: "btn btn-outline-danger btn-block rounded" %></div>
+        <% end %>
+      </div>
+    </div>
 
-<div>
-  <% if @bookmark_list.present? %>
-    <%= @bookmark_list.each do |post_image| %>
-      <p><%= image_tag post_image.get_image(400, 300) %></p>
-      <p><%= @user.name %></p>
-      <p><%= post_image.name %></p>
-      <p><%= post_image.prefecture %></p>
-      <p><%= @bookmark_list.count %></p>
-    <% end %>
-  <% end %>
+
+    <div class="posts-bookmarks col-md-8">
+      <div class="main-title h5 mt-3"><strong>投稿一覧</strong></div>
+      <div class="main-content">
+        <%= render 'public/shared/posts', post_images: @post_images %>
+      </div>
+      <div class="main-title h5 mt-5"><strong>ブックマーク一覧</strong></div>
+        <div class="main-content mb-5">
+          <div class="card-list-container py-3 d-flex flex-wrap">
+            <% if @bookmark_list.present? %>
+              <% @bookmark_list.each do |post_image| %>
+              <div class="card w-25 mx-3">
+                <%= link_to public_post_image_path(post_image.id) do %>
+                  <%= image_tag post_image.get_image(200, 120) %>
+                <% end %>
+                <div class="card-body">
+                  <div class="row">
+                    <%= link_to public_post_image_path(post_image.id) do %>
+                      <p class="card-title h6 ml-3"><%= post_image.name %></p>
+                    <% end %>
+                  </div>
+                  <div class="row">
+                    <p class="card-writer small ml-3"><%= post_image.prefecture %></p>
+                  </div>
+                  <div class="row">
+                    <p class="card-tag text-secondary ml-3">
+                      <% post_image.tags.each do |tag| %>
+                        <%= tag.name %>
+                      <% end %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<% if @user == current_user %>
-<%= link_to "退会する", public_unsubscribe_path %>
-<% end %>
+
+
