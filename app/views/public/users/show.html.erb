@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="profile col-md-3 offset-1 mt-4">
+    <div class="profile col-md-3 mt-4">
       <div class="profile-image "><%= image_tag @user.get_profile_image(200, 200) %></div>
       <table class="table table-borderless">
         <tr><td>会員名</td><td><%= @user.name %></td></tr>
@@ -17,10 +17,10 @@
     </div>
 
 
-    <div class="posts-bookmarks col-md-8">
+    <div class="posts-bookmarks col-md-8 ml-5">
       <div class="main-title h5 mt-3"><strong>投稿一覧</strong></div>
       <div class="main-content">
-        <%= render 'public/shared/posts', post_images: @post_images %>
+        <%= render 'public/shared/posts', post_images: @post_image %>
       </div>
       <div class="main-title h5 mt-5"><strong>ブックマーク一覧</strong></div>
         <div class="main-content mb-5">
@@ -46,6 +46,7 @@
                         <%= tag.name %>
                       <% end %></p>
                   </div>
+                </div>
                 </div>
               <% end %>
             <% end %>

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def search
     @q = PostImage.ransack(params[:q])
-    @post_images = @q.result(distinct: true)
+    @post_images = @q.result(distinct: true).page(params[:page]).per(9)
     @result = params[:q]&.values&.reject(&:blank?)
   end
 end

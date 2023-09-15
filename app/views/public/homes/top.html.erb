@@ -1,20 +1,46 @@
 
 <div class="container">
+  <div class="jumbotron jumbotron-fluid">
   <div class="row">
-      <div class="img-fluid">
+      <div class="img-fluid d-block mx-auto">
         <% @random.each do |post_image| %>
-          <%= image_tag post_image.get_image(100, 100) %>
+          <%= image_tag post_image.get_image('60%', '40%') %>
         <% end %>
       </div>
+    </div>
   </div>
   <div class="row">
-    <div class="sidebar col-md-4">
-      <div class="sidebar-content">地域から探す</div>
-        <%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_eq: '1' }}), class: 'small' do %>
-          <div>北海道</div>
+    <div class="sidebar col-md-4 mb-5">
+      <div class="sidebar-content h6"><strong>タグから探す</strong></div>
+      <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '家族' }}) do %>
+          <div class="mr-3">家族</div>
         <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_eq: '2' }}), class: 'small' do %>
-          <div>青森県</div>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '友人' }}) do %>
+          <div class="mr-3">友人</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '職場' }}) do %>
+          <div class="mr-3">職場</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '自分' }}) do %>
+          <div class="mr-3">自分</div>
+        <% end %>
+      <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'お菓子' }}) do %>
+          <div class="mr-3">お菓子</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '食品' }}) do %>
+          <div class="mr-3">食品</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '飲料品' }}) do %>
+          <div class="mr-3">飲料品</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '美容・化粧品' }}) do %>
+          <div class="mr-3">美容・化粧品</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '雑貨・趣味' }}) do %>
+          <div class="mr-3">雑貨・趣味</div>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'その他' }}) do %>
+          <div class="mr-3">その他</div>
         <% end %>
     </div>
     <div class="main col-md-8">
@@ -25,7 +51,7 @@
         <div class="main-content">
           <%= render 'public/shared/posts', post_images: @post_images %>
         </div>
-      <div class="main-title h5 mt-3"><strong>人気おみやげ</strong></div>
+      <div class="main-title h5 mt-5"><strong>人気おみやげ</strong></div>
         <div class="main-content mb-5">
           <div class="card-list-container py-3 d-flex flex-wrap">
             <% @all_ranks.each do |all_ranks| %>

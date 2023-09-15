@@ -1,22 +1,17 @@
-<div>
-  <% if @post_images.present? %>
-  <% search_word = @q.name_or_prefecture_cont %>
-  <h2>検索結果</h2>
-    <% @post_images.each do |post_image| %>
-    <p><%= post_image.name %></p>
-    <p>
-      <%= link_to public_post_image_path(post_image.id) do %>
-        <%= image_tag post_image.get_image(40, 30) %>
-      <% end %>
-    </p>
-    <p><%= post_image.prefecture %></p>
-    <p><%= post_image.user.name %></p>
-    <% post_image.tags.each do |tag| %>
-     <%= tag.name %>
-    <% end %>
-    <%= post_image.created_at.strftime('%Y/%m/%d') %>
-  <% end %>
-  <% else %>
-    <h3>検索結果がありません</h3>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="index">
+        <% if @post_images.present? %>
+        <% search_word = @q.name_or_prefecture_cont %>
+          <%= render 'public/shared/posts', post_images: @post_images %>
+        <% else %>
+          <div class="result mt-3 h4">検索結果がありません。他のキーワードでお試しください。</div>
+        <% end %>
+      </div>
+      <div class="paginate m-5">
+        <%= paginate @post_images %>
+      </div>
+    </div>
+  </div>
 </div>

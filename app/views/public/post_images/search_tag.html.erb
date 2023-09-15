@@ -1,9 +1,45 @@
-<h3>タグから検索</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　送り先・もらい先　</h5>
+      <div class="col-md-8 offset-md-2">
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '家族' }}) do %>
+          <span class="mr-3">家族</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '友人' }}) do %>
+          <span class="mr-3">友人</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '職場' }}) do %>
+          <span class="mr-3">職場</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '自分' }}) do %>
+          <span class="mr-3">自分</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-10 offset-md-1">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　ジャンル　</h5>
+      <div class="col-md-8 offset-md-2">
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'お菓子' }}) do %>
+          <span class="mr-3">お菓子</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '食品' }}) do %>
+          <span class="mr-3">食品</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '飲料品' }}) do %>
+          <span class="mr-3">飲料品</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '美容・化粧品' }}) do %>
+          <span class="mr-3">美容・化粧品</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '雑貨・趣味' }}) do %>
+          <span class="mr-3">雑貨・趣味</span>
+        <% end %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'その他' }}) do %>
+          <span class="mr-3">その他</span>
+        <% end %>
+      </div>
+    </div>
 
-<%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_or_tags_name_cont_any_eq: '家族' }}) do %>
-<div>家族</div>
-<% end %>
-
-<%= link_to ({ controller: "searches", action: "search", q: { name_or_prefecture_or_tags_name_cont_any_eq: '自分' }}) do %>
-<div>自分</div>
-<% end %>
+  </div>
+</div>

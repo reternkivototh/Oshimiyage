@@ -14,76 +14,76 @@
     <div class="offset-md-1 pb-5 mb-5">
       <h5 class="d-inline-block m-4 ml-5 bg-light">　新規会員登録　</h5>
       <table class="table table-sm table-borderless">
-          <tr>
-            <td><%= f.label "メールアドレス" %></td>
-            <td><br></td>
-            <td><%= f.email_field :email, autocomplete: "email" %></td>
-          </tr>
-          <tr>
-            <td>
-              <%= f.label "パスワード" %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %>文字以上)</em>
-              <% end %>
-            </td>
-            <td><br></td>
-            <td>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.label "パスワード(確認用)" %></td>
-            <td><br></td>
-            <td>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.label "会員名" %></td>
-            <td><br></td>
-            <td><%= f.text_field :name %></td>
-          </tr>
-          <tr>
-            <td><%= f.label "お住まいの都道府県" %></td>
-            <td><br></td>
-            <td colspan="3"><%= f.select :prefecture, User.prefectures.keys, {} %></td>
-          </tr>
-          <tr>
-            <td><%= f.label "性別" %></td>
-            <td><br></td>
-            <td>
-              <%= f.radio_button :gender, User.genders.key(0) %>
-              <%= f.label :gender_male, User.genders_i18n[:male] %>
-              <%= f.radio_button :gender, User.genders.key(1) %>
-              <%= f.label :gender_female, User.genders_i18n[:female] %>
-              <%= f.radio_button :gender, User.genders.key(2) %>
-              <%= f.label :gender_others, User.genders_i18n[:others] %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.label "生年月" %></td>
-            <td><br></td>
-            <td>
-              <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
-              <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
-            </td>
-          </tr>
-          <tr>
-            <td><br></td>
-            <td><br></td>
-            <td><%= f.submit "新規登録", class: "btn btn-success rounded btn-sm d-grid gap-2 col-8 mx-auto" %></td>
-          </tr>
-        </table>
-        <h6 class=" d-inline-block my-4 bg-light">　既に登録済みの方　</h6>
-        <div class="ml-5">
-          <p><%= link_to "こちら", new_user_session_path %>  からログインしてください。</p>
-        </div>
-        <h6 class="d-inline-block my-4 bg-light">　閲覧のみ利用する方　</h6>
-        <div class="ml-5">
-          <p><%= link_to "こちら", public_users_guest_sign_in_path, method: :post %>  からゲストログインを行ってください。</p>
-        </div>
+        <tr>
+          <td><%= f.label "メールアドレス" %></td>
+          <td><br></td>
+          <td><%= f.email_field :email, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label "パスワード" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %>文字以上)</em>
+            <% end %>
+          </td>
+          <td><br></td>
+          <td>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label "パスワード(確認用)" %></td>
+          <td><br></td>
+          <td>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label "会員名" %></td>
+          <td><br></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "お住まいの都道府県" %></td>
+          <td><br></td>
+          <td colspan="3"><%= f.select :prefecture, User.prefectures.keys, {} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "性別" %></td>
+          <td><br></td>
+          <td>
+            <%= f.radio_button :gender, User.genders.key(0) %>
+            <%= f.label :gender_male, User.genders_i18n[:male] %>
+            <%= f.radio_button :gender, User.genders.key(1) %>
+            <%= f.label :gender_female, User.genders_i18n[:female] %>
+            <%= f.radio_button :gender, User.genders.key(2) %>
+            <%= f.label :gender_others, User.genders_i18n[:others] %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label "生年月" %></td>
+          <td><br></td>
+          <td>
+            <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
+            <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
+          </td>
+        </tr>
+        <tr>
+          <td><br></td>
+          <td><br></td>
+          <td><%= f.submit "新規登録", class: "btn btn-success rounded btn-sm d-grid gap-2 col-8 mx-auto" %></td>
+        </tr>
+      </table>
+      <h6 class=" d-inline-block my-4 bg-light">　既に登録済みの方　</h6>
+      <div class="ml-5">
+        <p><%= link_to "こちら", new_user_session_path %>  からログインしてください。</p>
+      </div>
+      <h6 class="d-inline-block my-4 bg-light">　閲覧のみ利用する方　</h6>
+      <div class="ml-5">
+        <p><%= link_to "こちら", public_users_guest_sign_in_path, method: :post %>  からゲストログインを行ってください。</p>
       </div>
     </div>
+  </div>
 </div>
 
 <% end %>

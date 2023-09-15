@@ -38,12 +38,13 @@ class Public::PostImagesController < ApplicationController
   def update
     @post_image = PostImage.find(params[:id])
     if @post_image.update(post_image_params)
+      @post_image.tags.destroy_all
       tag_ids =  params[:post_image][:tag_ids]
       tag_ids.shift
-
       tag_ids.each do |id|
-        PostingTag.update(post_image_id: @post_image.id, tag_id: id)
+        PostingTag.create(post_image_id: @post_image.id, tag_id: id)
       end
+
       redirect_to public_post_image_path(@post_image.id)
     else
       render :edit

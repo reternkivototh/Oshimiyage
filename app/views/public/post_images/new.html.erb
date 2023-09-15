@@ -1,5 +1,3 @@
-<h3>投稿</h3>
-
 <% if @post_image.errors.any? %>
   <%= @post_image.errors.count %>件のエラーが発生しました
   <ul>
@@ -10,27 +8,67 @@
 <% end %>
 
 <%= form_with model: @post_image, url: public_post_images_path do |f| %>
-  <div class="field">
-    <p>おみやげ画像<%= f.file_field :image, accept: "image/*" %></p>
-    <p>おみやげ名<%= f.text_field :name %></p>
-    <p>コメント<%= f.text_area :my_comment %></p>
-    <p>旅先<%= f.select :prefecture, PostImage.prefectures.keys, {} %></p>
-    <p>
-      <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
-      <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 pb-5 mb-5">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　投稿　</h5>
+        <table class="table table-sm table-borderless">
+           <tr>
+            <td><%= f.label "おみやげ画像" %></td>
+            <td><br></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "おみやげ名" %></td>
+            <td><br></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "コメント" %></td>
+            <td><br></td>
+            <td><%= f.text_area :my_comment %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "旅先" %></td>
+            <td><br></td>
+            <td><%= f.select :prefecture, PostImage.prefectures.keys, {} %></td>
+          </tr>
+          <tr>
+            <td><br></td>
+            <td><br></td>
+            <td>
+              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
+              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
 
-      <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(1) %>
-      <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
-    </p>
-    <p>値段<%= f.text_field :price %>円</p>
-    <p>タグ<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-        <%= tag.label do %>
-          <%= tag.check_box %>
-          <%= tag.text %>
-        <% end %>
-      <% end %>
-    </p>
-
-    <%= f.submit '新規投稿' %>
+              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(1) %>
+              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label "価格" %></td>
+            <td><br></td>
+            <td><%= f.text_field :price %>円</td>
+          </tr>
+          <tr>
+            <td><%= f.label "タグ" %></td>
+            <td><br></td>
+            <td>
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <%= tag.label do %>
+                  <%= tag.check_box %>
+                  <%= tag.text %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><br></td>
+            <td><br></td>
+            <td><%= f.submit "新規投稿", class: "btn btn-success rounded btn-sm d-grid gap-2 col-8 mx-auto mt-3" %></td>
+          </tr>
+        </table>
+    </div>
   </div>
+</div>
 <% end %>
+

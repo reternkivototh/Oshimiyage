@@ -32,7 +32,7 @@ ja:
         birth_month: 生月
       post_image:
         name: おみやげ名
-        comment: コメント
+        my_comment: コメント
         way_of_getting: 入手方法
         prefecture: 都道府県
     models:
