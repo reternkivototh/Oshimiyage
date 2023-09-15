@@ -1,2 +1,74 @@
-<h1>Admin::PostImages#edit</h1>
-<p>Find me in app/views/admin/post_images/edit.html.erb</p>
+<% if @post_image.errors.any? %>
+  <%= @post_image.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_image.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @post_image, url: admin_post_image_path(@post_image.id), method: :patch do |f| %>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 pb-5 mb-5">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　投稿編集　</h5>
+      <div class="col-md-8 offset-md-2">
+        <table class="table table-sm table-borderless">
+           <tr>
+            <td><%= f.label "おみやげ画像" %></td>
+            <td><br></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "おみやげ名" %></td>
+            <td><br></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "コメント" %></td>
+            <td><br></td>
+            <td><%= f.text_area :my_comment %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "旅先" %></td>
+            <td><br></td>
+            <td><%= f.select :prefecture, User.prefectures.keys, {} %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "入手方法" %></td>
+            <td><br></td>
+            <td>
+              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
+              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
+              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(1) %>
+              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label "価格" %></td>
+            <td><br></td>
+            <td><%= f.text_field :price %>円</td>
+          </tr>
+          <tr>
+            <td><%= f.label "タグ" %></td>
+            <td><br></td>
+            <td>
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <%= tag.label do %>
+                  <%= tag.check_box %>
+                  <%= tag.text %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><br></td>
+            <td><br></td>
+            <td><%= f.submit "変更を保存", class: "btn btn-success rounded btn-sm d-grid gap-2 col-8 mx-auto" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,4 +1,6 @@
 class Admin::TagsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     @tag = Tag.new
     @tags = Tag.all

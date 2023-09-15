@@ -1,10 +1,48 @@
-<h1>Admin::Users#index</h1>
 <%= form_with model: @user, url: admin_users_path do |f| %>
-  <% @user.each do |user| %>
-    <%= user.id %>
-    <%= user.name %>
-    <%= user.email %>
-    <%= user.is_deleted? ? '無効' : '有効'%>
-    <%= link_to "詳細", admin_user_path(user.id) %>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-md-1">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　会員一覧　</h5>
+    </div>
+  </div>
+  <div class="row　justify-content-center">
+    <div class="mx-auto col-md-8 col-md-offset-2 ">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+              <th><br></th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @user.each do |user| %>
+                <tr>
+                  <td>
+                    <%= user.id %>
+                  </td>
+                  <td>
+                    <%= user.name %>
+                  </td>
+                  <td>
+                    <%= user.email %>
+                  </td>
+                  <td>
+                    <%= user.is_deleted? ? '無効' : '有効' %>
+                  </td>
+                  <td>
+                    <%= link_to "詳細", admin_user_path(user.id) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+      </div>
+  </div>
+</div>
 <% end %>
+
+<%= paginate @post_images %>

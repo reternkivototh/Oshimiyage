@@ -1,4 +1,6 @@
 class Public::BookmarksController < ApplicationController
+  before_action :guest_check
+
   def create
     post_image = PostImage.find(params[:post_image_id])
     bookmark = current_user.bookmarks.build(bookmark_params)
@@ -14,7 +16,9 @@ class Public::BookmarksController < ApplicationController
   end
 
   private
+
   def bookmark_params
     params.permit(:post_image_id)
   end
+
 end

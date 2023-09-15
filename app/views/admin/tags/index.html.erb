@@ -1,12 +1,38 @@
-<h3>タグ一覧・追加</h3>
-
 <%= form_with model: @tag, url: admin_tags_path do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit '新規登録' %>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="offset-md-1 pb-5 mb-5">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　タグ一覧・追加　</h5>
+        <table class="table table-sm table-borderless">
+          <tr>
+            <td class="pr-5"><%= "タグ名" %></td>
+            <td class="pr-5"><%= f.text_field :name %></td>
+            <td class="pr-5"><%= f.submit "　新規登録　", class: "d-inline-block btn btn-success rounded btn-sm mx-auto" %></td>
+          </tr>
+        </table>
+        <table class="table col-md-8 mt-5">
+          <thead class="bg-light">
+            <tr>
+              <th>タグ</th>
+              <th><br></th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @tags.each do |tag| %>
+                <tr>
+                  <td>
+                    <%= tag.name %>
+                  </td>
+                  <td>
+                    <%= link_to "　編集する　", edit_admin_tag_path(tag.id), class: "btn btn-success btn-sm rounded" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
-<h5>タグ</h5>
-<% @tags.each do |tag| %>
-  <%= tag.name %>
-  <%= link_to '編集する', edit_admin_tag_path(tag.id) %>
-<% end %>

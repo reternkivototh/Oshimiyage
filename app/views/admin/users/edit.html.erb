@@ -1,30 +1,78 @@
-<h3>プロフィール編集</h3>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-
-  <%= f.text_field :name %>
-
-  <%= f.select :prefecture, User.prefectures.keys, {} %>
-
-
-  <%= f.radio_button :gender, User.genders.key(0) %>
-    <%= f.label :gender_male, User.genders_i18n[:male] %>
-
-    <%= f.radio_button :gender, User.genders.key(1) %>
-    <%= f.label :gender_female, User.genders_i18n[:female] %>
-
-    <%= f.radio_button :gender, User.genders.key(2) %>
-    <%= f.label :gender_others, User.genders_i18n[:others] %>
-
-
-  <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
-
-  <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
-
-  <%= f.label "会員ステータス" %>
-  <label><%= f.radio_button :is_deleted, false %>有効</label>
-  <label><%= f.radio_button :is_deleted, true %>無効</label>
-
-    <%= f.submit "変更を保存" %>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 pb-5 mb-5">
+      <h5 class="d-inline-block m-4 ml-5 bg-light">　プロフィール編集　</h5>
+      <div class="col-md-8 offset-md-2">
+        <table class="table table-sm table-borderless">
+           <tr>
+            <td><%= f.label "プロフィール画像" %></td>
+            <td><br></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "メールアドレス" %></td>
+            <td><br></td>
+            <td><%= f.email_field :email, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "会員名" %></td>
+            <td><br></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "お住まいの都道府県" %></td>
+            <td><br></td>
+            <td><%= f.select :prefecture, User.prefectures.keys, {} %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "性別" %></td>
+            <td><br></td>
+            <td>
+              <%= f.radio_button :gender, User.genders.key(0) %>
+              <%= f.label :gender_male, User.genders_i18n[:male] %>
+              <%= f.radio_button :gender, User.genders.key(1) %>
+              <%= f.label :gender_female, User.genders_i18n[:female] %>
+              <%= f.radio_button :gender, User.genders.key(2) %>
+              <%= f.label :gender_others, User.genders_i18n[:others] %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label "生年月" %></td>
+            <td><br></td>
+            <td>
+              <%= f.select :birth_year, *[1940..2023], :include_blank => "年" %>
+              <%= f.select :birth_month, *[1..12], :include_blank => "月" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label "会員ステータス" %>
+            </td>
+            <td><br></td>
+            <td>
+              <%= f.radio_button :is_deleted, false %>有効
+              <%= f.radio_button :is_deleted, true %>無効
+            </td>
+          </tr>
+          <tr>
+            <td><br></td>
+            <td><br></td>
+            <td><%= f.submit "変更を保存", class: "btn btn-success rounded btn-sm d-grid gap-2 col-8 mx-auto" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
+

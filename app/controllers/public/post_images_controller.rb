@@ -1,5 +1,7 @@
 class Public::PostImagesController < ApplicationController
   protect_from_forgery
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :guest_check, except: [:index, :show, :search_place, :search_tag]
 
   def index
     @post_images = PostImage.page(params[:page]).per(9)
@@ -64,6 +66,14 @@ class Public::PostImagesController < ApplicationController
 
   def post_image_params
     params.require(:post_image).permit(:image, :name, :my_comment, :way_of_getting, :price, :prefecture, :user_id, :tag_ids, :comment)
+  end
+
+  def is_matching_login_user
+    @post_image = PostImage.find(params[:id])
+    @user = User.find(@post_image.user.id)
+    unless @user.id == current_user.id
+      redirect_to public_post_images_path
+    end
   end
 
 
