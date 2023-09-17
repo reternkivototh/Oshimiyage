@@ -1,5 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 
+body {
+  background-image: url("../images/no_image.jpg");}
+
 .pagination {
   justify-content: center;
 }
