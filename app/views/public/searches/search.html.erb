@@ -3,7 +3,7 @@
     <div class="col-md-8 offset-md-2">
       <div class="index">
         <% if @post_images.present? %>
-        <% search_word = @q.name_or_prefecture_or_tags_name_cont_any_cont %>
+        <% search_word = @q.tags_name_or_name_or_prefecture_cont_any_cont %>
           <%= render 'public/shared/posts', post_images: @post_images %>
         <% else %>
           <div class="result mt-3 h4">検索結果がありません。他のキーワードでお試しください。</div>
