@@ -38,7 +38,7 @@ class User < ApplicationRecord
       user.password_confirmation = user.password
       user.birth_year = 1990
       user.birth_month = 12
-      user.id = 99
+      user.id = 1
     end
   end
 
