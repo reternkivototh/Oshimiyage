@@ -4,7 +4,6 @@
       <div class="index">
         <% if @post_images.present? %>
         <% search_word = params[:q][:tags_name_eq] %>
-          <%= search_word %>
           <%= render 'public/shared/posts', post_images: @post_images %>
         <% else %>
           <div class="result mt-3 h4">検索結果がありません。他のキーワードでお試しください。</div>

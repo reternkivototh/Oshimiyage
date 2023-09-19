@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_admin!, if: :admin_url
-  before_action :authenticate_user!, except: [:top, :about, :index, :search_place, :search_tag]
+  before_action :authenticate_user!, except: [:top, :about, :index, :search_place, :search_tag, :search]
   before_action :search
 
 
