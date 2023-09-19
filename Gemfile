@@ -66,8 +66,6 @@ gem 'devise-i18n'
 
 gem 'kaminari','~> 1.2.1'
 
-gem 'ancestry'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
