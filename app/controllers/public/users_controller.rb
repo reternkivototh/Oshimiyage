@@ -35,7 +35,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:image, :name, :email, :prefecture, :gender, :birth_year, :birth_month)
+    params.require(:user).permit(:profile_image, :name, :email, :prefecture, :gender, :birth_year, :birth_month)
   end
 
   def is_matching_login_user

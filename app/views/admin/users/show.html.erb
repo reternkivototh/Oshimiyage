@@ -10,6 +10,10 @@
           <td><br></td>
         </tr>
         <tr>
+          <td><%= f.label "プロフィール画像" %></td>
+          <td><%= image_tag @user.get_profile_image(100, 100) %></td>
+        </tr>
+        <tr>
           <td><%= f.label "名前" %></td>
           <td><%= @user.name %></td>
           <td><br></td>
