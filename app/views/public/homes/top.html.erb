@@ -56,14 +56,10 @@
           <div class="card-list-container py-3 d-flex flex-wrap">
             <% @all_ranks.each do |all_ranks| %>
             <div class="card w-25 mx-3">
-              <%= link_to public_post_image_path(@post_images.ids) do %>
                 <%= image_tag all_ranks.get_image(200, 120) %>
-              <% end %>
               <div class="card-body">
                 <div class="row">
-                  <%= link_to public_post_image_path(@post_images.ids) do %>
                     <p class="card-title h6 ml-3"><%= all_ranks.name %></p>
-                  <% end %>
                 </div>
                 <div class="row">
                   <p class="card-writer small ml-3"><%= all_ranks.prefecture %></p>

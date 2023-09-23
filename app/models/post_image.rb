@@ -26,6 +26,9 @@ class PostImage < ApplicationRecord
   validates :my_comment, presence: true
   validates :way_of_getting, presence: true
 
+  def self.create_all_ranks
+     @all_ranks = PostImage.find(Bookmark.group(:post_image_id).order('count(post_image_id) desc').limit(3).pluck(:post_image_id))
+  end
 
   def get_image(width, height)
     unless image.attached?
