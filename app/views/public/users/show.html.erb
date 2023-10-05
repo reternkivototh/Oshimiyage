@@ -18,7 +18,10 @@
 
 
     <div class="posts-bookmarks col-md-8 ml-5">
-      <div class="main-title h5 mt-3"><strong>投稿一覧</strong></div>
+      <ul class="nav nav-tabs">
+        <li class="nav-item w-100 bg-light">
+          <a class="nav-link active link-text" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post-image" aria-selected="true">投稿一覧</a>
+        </li>
       <div class="main-content">
         <%= render 'public/shared/posts', post_images: @post_image %>
       </div>
@@ -52,6 +55,7 @@
             <% end %>
           </div>
         </div>
+      </div>
       </div>
     </div>
 
