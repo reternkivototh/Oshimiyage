@@ -17,45 +17,51 @@
     </div>
 
 
-    <div class="posts-bookmarks col-md-8 ml-5">
-      <ul class="nav nav-tabs">
-        <li class="nav-item w-100 bg-light">
-          <a class="nav-link active link-text" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post-image" aria-selected="true">投稿一覧</a>
+    <div class="main-content col-md-8 ml-5 mt-3">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item w-50 bg-light">
+          <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="true">投稿</a>
         </li>
-      <div class="main-content">
-        <%= render 'public/shared/posts', post_images: @post_image %>
-      </div>
-      <div class="main-title h5 mt-5"><strong>ブックマーク一覧</strong></div>
-        <div class="main-content mb-5">
-          <div class="card-list-container py-3 d-flex flex-wrap">
-            <% if @bookmark_list.present? %>
-              <% @bookmark_list.each do |post_image| %>
-              <div class="card w-25 mx-3">
-                <%= link_to public_post_image_path(post_image.id) do %>
-                  <%= image_tag post_image.get_image(200, 120) %>
+        <li class="nav-item w-50 bg-light">
+          <a class="nav-link" id="bookmark-tab" data-toggle="tab" href="#bookmark" role="tab" aria-controls="bookmark" aria-selected="false">ブックマーク</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+          <%= render 'public/shared/posts', post_images: @post_image %>
+        </div>
+        <div class="tab-pane fade show active" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
+          <div class="main-content mb-5">
+            <div class="card-list-container py-3 d-flex flex-wrap">
+              <% if @bookmark_list.present? %>
+                <% @bookmark_list.each do |post_image| %>
+                <div class="card w-25 mx-3">
+                  <%= link_to public_post_image_path(post_image.id) do %>
+                    <%= image_tag post_image.get_image(200, 120) %>
+                  <% end %>
+                  <div class="card-body">
+                    <div class="row">
+                      <%= link_to public_post_image_path(post_image.id) do %>
+                        <p class="card-title h6 ml-3"><%= post_image.name %></p>
+                      <% end %>
+                    </div>
+                    <div class="row">
+                      <p class="card-writer small ml-3"><%= post_image.prefecture %></p>
+                    </div>
+                    <div class="row">
+                      <p class="card-tag text-secondary ml-3">
+                        <% post_image.tags.each do |tag| %>
+                          <%= tag.name %>
+                        <% end %></p>
+                    </div>
+                  </div>
+                </div>
                 <% end %>
-                <div class="card-body">
-                  <div class="row">
-                    <%= link_to public_post_image_path(post_image.id) do %>
-                      <p class="card-title h6 ml-3"><%= post_image.name %></p>
-                    <% end %>
-                  </div>
-                  <div class="row">
-                    <p class="card-writer small ml-3"><%= post_image.prefecture %></p>
-                  </div>
-                  <div class="row">
-                    <p class="card-tag text-secondary ml-3">
-                      <% post_image.tags.each do |tag| %>
-                        <%= tag.name %>
-                      <% end %></p>
-                  </div>
-                </div>
-                </div>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
 
