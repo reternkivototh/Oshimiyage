@@ -8,7 +8,10 @@ class Public::PostCommentsController < ApplicationController
     if comment.save
       redirect_to public_post_image_path(post_image.id)
     else
-      redirect_to public_post_images_path(post_image.id)
+      @post_image = PostImage.find(params[:post_image_id])
+      @user = User.find(@post_image.user.id)
+      @post_comment = PostComment.new
+      render 'public/post_images/show'
     end
   end
 

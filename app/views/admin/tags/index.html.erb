@@ -1,3 +1,12 @@
+<% if @tag.errors.any? %>
+  <%= @tag.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @tag.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @tag, url: admin_tags_path do |f| %>
 <div class="container px-5 px-sm-0 mt-3">
   <div class="row">

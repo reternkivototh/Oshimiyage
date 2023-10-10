@@ -35,6 +35,8 @@ ja:
         my_comment: コメント
         way_of_getting: 入手方法
         prefecture: 都道府県
+      tag:
+        name: タグ名
     models:
       user: ユーザー
       post_image: 投稿
