@@ -4,7 +4,7 @@ class Public::PostImagesController < ApplicationController
   before_action :guest_check, except: [:index, :show, :search_place, :search_tag]
 
   def index
-    @post_images = PostImage.page(params[:page]).per(9)
+    @post_images = PostImage.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def create

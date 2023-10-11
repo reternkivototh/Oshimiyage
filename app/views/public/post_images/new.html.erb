@@ -37,11 +37,11 @@
             <td><br></td>
             <td><br></td>
             <td>
-              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(0) %>
-              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:buy] %>
+              <%= f.radio_button :way_of_getting, :buy %>
+              <%= f.label :way_of_getting_buy, "買った" %>
 
-              <%= f.radio_button :way_of_getting, PostImage.way_of_gettings.key(1) %>
-              <%= f.label :way_of_getting, PostImage.way_of_gettings_i18n[:receive] %>
+              <%= f.radio_button :way_of_getting, :receive %>
+              <%= f.label :way_of_getting_receive, "もらった" %>
             </td>
           </tr>
           <tr>
