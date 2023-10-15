@@ -11,36 +11,11 @@
   <div class="row">
     <div class="sidebar col-md-4 mb-5">
       <div class="sidebar-content h6"><strong>タグから探す</strong></div>
-      <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '家族' }}) do %>
-          <div class="mr-3">家族</div>
+        <% Tag.all.each do | tag | %>
+        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: tag.name }}) do %>
+          <div class="mr-3"><%= tag.name %></div>
         <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '友人' }}) do %>
-          <div class="mr-3">友人</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '職場' }}) do %>
-          <div class="mr-3">職場</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '自分' }}) do %>
-          <div class="mr-3">自分</div>
-        <% end %>
-      <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'お菓子' }}) do %>
-          <div class="mr-3">お菓子</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '食品' }}) do %>
-          <div class="mr-3">食品</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '飲料品' }}) do %>
-          <div class="mr-3">飲料品</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '美容・化粧品' }}) do %>
-          <div class="mr-3">美容・化粧品</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: '雑貨・趣味' }}) do %>
-          <div class="mr-3">雑貨・趣味</div>
-        <% end %>
-        <%= link_to ({ controller: "searches", action: "search", q: { tags_name_eq: 'その他' }}) do %>
-          <div class="mr-3">その他</div>
-        <% end %>
+      <% end %>
     </div>
 
     <div class="main col-md-8">
