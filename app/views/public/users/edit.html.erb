@@ -38,12 +38,12 @@
             <td><%= f.label "性別" %></td>
             <td><br></td>
             <td>
-              <%= f.radio_button :gender, User.genders.key(0) %>
-              <%= f.label :gender_male, User.genders_i18n[:male] %>
-              <%= f.radio_button :gender, User.genders.key(1) %>
-              <%= f.label :gender_female, User.genders_i18n[:female] %>
-              <%= f.radio_button :gender, User.genders.key(2) %>
-              <%= f.label :gender_others, User.genders_i18n[:others] %>
+              <%= f.radio_button :gender, :male %>
+              <%= f.label :gender_male, "男性" %>
+              <%= f.radio_button :gender, :female %>
+              <%= f.label :gender_female, "女性" %>
+              <%= f.radio_button :gender, :others %>
+              <%= f.label :gender_others, "他" %>
             </td>
           </tr>
           <tr>
