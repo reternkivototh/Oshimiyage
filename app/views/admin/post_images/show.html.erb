@@ -47,7 +47,7 @@
           <% if @post_image.price.present? %>
           <tr>
             <td>価格</td>
-            <td><%= @post_image.price %>円</td>
+            <td><%= @post_image.price.to_s(:delimited) %>円</td>
           </tr>
           <% end %>
           <tr class="text-secondary">
